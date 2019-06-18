@@ -13,10 +13,12 @@ public class Game implements Serializable {
     private Player computer;
     private String pname;
     private String choice;
+    private Results results = new Results();
+    private int counter = 0;
 
     public Game(){
         player1 = new Player();
-        computer = new Player();
+        computer = new Player("Computer");
     }
 
     public Game(String pname){
@@ -57,4 +59,32 @@ public class Game implements Serializable {
         this.choice = choice;
         player1.setC(Player.Choice.valueOf(choice));
     }
+
+    public Results getResults() {
+        return results;
+    }
+
+    public void setResults(Results results) {
+        this.results = results;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public String addChoice(String choice){
+        if(counter<4){
+            counter++;
+            results.add(choice);
+            return null;
+        }else {
+            results.add(choice);
+            return "viewresults";
+        }
+    }
+
 }

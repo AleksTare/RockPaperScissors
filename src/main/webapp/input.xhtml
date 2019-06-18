@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title>Adding a Form</title>
+	<title>Rock Paper Scissors</title>
 </h:head>
 <h:body>
 
@@ -25,7 +25,9 @@
 			<br />
 			<br />
 
-			<h:commandButton action="viewresults" value="Submit"></h:commandButton>
+            <h:outputLabel for="choice">Tried: #{game.counter}</h:outputLabel>
+
+			<h:commandButton action="#{game.addChoice(game.choice)}" value="Submit"></h:commandButton>
 
 		</h:panelGrid>
 	</h:form>

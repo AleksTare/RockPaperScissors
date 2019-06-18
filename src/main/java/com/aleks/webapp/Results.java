@@ -18,10 +18,14 @@ public class Results {
         return results.get(id);
     }
 
-    public String[] getAll(){
-        String[] newResults = new String[results.size()];
-        newResults = results.toArray(newResults);
-        return newResults;
+    public String getAll(){
+        StringBuilder sb = new StringBuilder();
+        for (String s : results)
+        {
+            sb.append(s);
+            sb.append("\t");
+        }
+        return  sb.toString();
     }
 
 }
