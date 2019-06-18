@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Adding a Form</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<h3>Rock Paper Scissors</h3>
+		<h:panelGrid columns="3">
+			<h:outputLabel for="p1">Player Name:</h:outputLabel>
+			<h:inputText value="#{game.pname}" id="p1"></h:inputText>
+			<br />
+			<br />
+
+			<h:outputLabel for="choice">Choice:</h:outputLabel>
+			<h:selectOneListbox value="#{game.choice}" id="choice">
+				<f:selectItem itemValue = "ROCK" itemLabel = "ROCK" />
+				<f:selectItem itemValue = "PAPER" itemLabel = "PAPER" />
+				<f:selectItem itemValue = "SCISSORS" itemLabel = "SCISSORS" />
+			</h:selectOneListbox>
+			<br />
+			<br />
+
+			<h:commandButton action="viewresults" value="Submit"></h:commandButton>
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
+
+
