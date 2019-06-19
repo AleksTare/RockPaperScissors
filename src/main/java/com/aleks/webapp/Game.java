@@ -9,37 +9,37 @@ import javax.faces.bean.SessionScoped;
 public class Game implements Serializable {
 
     private static final long serialVersionUID = 1715935052239888761L;
-    private Player player1;
-    private Player computer;
+    private ComputerPlayer player1;
+    private ComputerPlayer player2;
     private String pname;
     private String choice;
     private Results results = new Results();
     private int counter = 0;
 
     public Game(){
-        player1 = new Player();
-        computer = new Player("Computer");
+        player1 = new ComputerPlayer();
+        player2 = new ComputerPlayer("Computer");
     }
 
     public Game(String pname){
-        player1 = new Player(pname);
-        computer = new Player("Computer");
+        player1 = new ComputerPlayer(pname);
+        player2 = new ComputerPlayer("Computer");
     }
 
-    public Player getPlayer1() {
+    public ComputerPlayer getPlayer1() {
         return player1;
     }
 
-    public void setPlayer1(Player player1) {
+    public void setPlayer1(ComputerPlayer player1) {
         this.player1 = player1;
     }
 
-    public Player getComputer() {
-        return computer;
+    public ComputerPlayer getPlayer2() {
+        return player2;
     }
 
-    public void setComputer(Player computer) {
-        this.computer = computer;
+    public void setPlayer2(ComputerPlayer player2) {
+        this.player2 = player2;
     }
 
     public String getPname() {
@@ -57,7 +57,7 @@ public class Game implements Serializable {
 
     public void setChoice(String choice) {
         this.choice = choice;
-        player1.setC(Player.Choice.valueOf(choice));
+        player1.setC(Choice.valueOf(choice));
     }
 
     public Results getResults() {
@@ -76,50 +76,35 @@ public class Game implements Serializable {
         this.counter = counter;
     }
 
-    public int validate(Player p1, Player p2){
-        Player.Choice p1choice = p1.getC();
-        Player.Choice p2choice = p2.getC();
+    private static int evaluate(ComputerPlayer p1, ComputerPlayer p2){
+        Choice p1choice = p1.getC();
+        Choice p2choice = p2.getC();
 
-        if(p1choice== Player.Choice.PAPER){
-            switch (p2choice){
-                case ROCK:
-                    return 1;
-                case PAPER:
-                    return 0;
-                case SCISSORS:
-                    return 2;
-            }
+        if (p1choice.equals(p2choice)){
+            return 0;
         }
+        int gameResult = p1choice.compareTo(p2choice);
 
-        if(p1choice== Player.Choice.ROCK){
-            switch (p2choice){
-                case ROCK:
-                    return 0;
-                case PAPER:
-                    return 2;
-                case SCISSORS:
-                    return 1;
-            }
-        }
-
-        if(p1choice== Player.Choice.SCISSORS){
-            switch (p2choice){
-                case ROCK:
-                    return 2;
-                case PAPER:
-                    return 1;
-                case SCISSORS:
-                    return 0;
-            }
-        }
-
-        return -1;
-
+        if (gameResult==2 || gameResult==-1)    return 1;
+        if (gameResult==-2 || gameResult==1)    return 2;
+        return gameResult;
     }
 
     public String addChoice(String choice){
-            computer.randomizer();
-            results.add(choice+" vs "+computer.getC());
+            player1.setC(Choice.valueOf(choice));
+            player2.randomizer();
+            int res = evaluate(player1,player2);
+            switch (res){
+                case 1:
+                    results.add(player1.getC()+" vs "+player2.getC()+"\n"+player1.getName()+" wins!");
+                    break;
+                case 2:
+                    results.add(player1.getC()+" vs "+player2.getC()+"\n"+player2.getName()+" wins!");
+                    break;
+                case 0:
+                    results.add(player1.getC()+" vs "+player2.getC()+" \n "+"It's a tie!!");
+                    break;
+            }
             if(counter<4){
                 counter++;
                 return null;
