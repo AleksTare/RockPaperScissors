@@ -81,8 +81,9 @@ public class Game implements Serializable {
             counter++;
             results.add(choice);
             return null;
-        }else {
+        }else{
             results.add(choice);
+            counter = 0;
             return "viewresults";
         }
     }

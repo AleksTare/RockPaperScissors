@@ -32,4 +32,22 @@ public class Player {
         this.c = c;
     }
 
+    public void randomizer(){
+        int rand = getRandomIntegerBetween(1,3);
+        switch(rand) {
+            case 1:
+                c = Choice.ROCK;
+                break;
+            case 2:
+                c = Choice.PAPER;
+                break;
+            default:
+                c = Choice.SCISSORS;
+        }
+    }
+
+    private static int getRandomIntegerBetween(int min, int max){
+        return (int)(Math.random()*((max-min)+1))+min;
+    }
+
 }
