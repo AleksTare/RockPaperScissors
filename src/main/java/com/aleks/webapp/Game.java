@@ -1,20 +1,13 @@
 package com.aleks.webapp;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
-@ManagedBean
-@SessionScoped
-public class Game implements Serializable {
+public class Game {
 
-    private static final long serialVersionUID = 1715935052239888761L;
     private HumanPlayer player1;
     private ComputerPlayer player2;
-    private String choice;
     private Results results = new Results();
-    private int counter = 0;
+    private String temporalResult;
 
     public Game(){
         player1 = new HumanPlayer();
@@ -42,15 +35,6 @@ public class Game implements Serializable {
         this.player2 = player2;
     }
 
-    public String getChoice() {
-        return choice;
-    }
-
-    public void setChoice(String choice) {
-        this.choice = choice;
-        player1.setC(Choice.valueOf(choice));
-    }
-
     public ArrayList<String> getResults() {
         return results.getResults();
     }
@@ -59,13 +43,9 @@ public class Game implements Serializable {
         this.results = results;
     }
 
-    public int getCounter() {
-        return counter;
-    }
+    public String getTemporalResult() { return temporalResult; }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
+    public void setTemporalResult(String temporalResult) { this.temporalResult = temporalResult; }
 
     private static int evaluate(Player p1, Player p2){
         Choice p1choice = p1.getC();
@@ -81,28 +61,27 @@ public class Game implements Serializable {
         return gameResult;
     }
 
-    public String addChoice(String choice){
-            player1.setC(Choice.valueOf(choice));
+    public void addChoice(Choice choice){
+            int wins = 0;
+            player1.setC(choice);
             player2.randomizer();
             int res = evaluate(player1,player2);
             switch (res){
                 case 1:
-                    results.add(player1.getC()+" vs "+player2.getC()+"\n"+player1.getName()+" wins!");
+                    wins = player1.getWins()+1;
+                    player1.setWins(wins);
+                    temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+player1.getName()+" wins!";
                     break;
                 case 2:
-                    results.add(player1.getC()+" vs "+player2.getC()+"\n"+player2.getName()+" wins!");
+                    wins = player2.getWins()+1;
+                    player2.setWins(wins);
+                    temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+player2.getName()+" wins!";
                     break;
                 case 0:
-                    results.add(player1.getC()+" vs "+player2.getC()+" \n "+"It's a tie!!");
+                    temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+"It's a tie!!";
                     break;
             }
-            if(counter<4){
-                counter++;
-                return null;
-            }else{
-                counter = 0;
-                return "viewresults";
-            }
+            results.add(temporalResult);
     }
 
 }

@@ -14,9 +14,7 @@ public class Results {
         results.add(result);
     }
 
-    public String fetch(int id){
-        return results.get(id);
-    }
+    public String fetch(int id){ return results.get(id); }
 
     public String getAll(){
         StringBuilder sb = new StringBuilder();

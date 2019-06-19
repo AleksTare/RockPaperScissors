@@ -4,9 +4,9 @@ public class ComputerPlayer implements Player {
 
     private String name;
     private Choice c;
+    private int wins;
 
-    public ComputerPlayer(){
-    }
+    public ComputerPlayer(){}
 
     public ComputerPlayer(String name){
         this.name = name;
@@ -27,6 +27,10 @@ public class ComputerPlayer implements Player {
     public void setC(Choice c) {
         this.c = c;
     }
+
+    public int getWins() { return wins; }
+
+    public void setWins(int wins) { this.wins = wins; }
 
     public void randomizer(){
         double rand = getRandomInteger();

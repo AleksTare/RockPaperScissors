@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title>Rock Paper Scissors</title>
@@ -12,12 +12,12 @@
 		<h3>Rock Paper Scissors</h3>
 		<h:panelGrid columns="3">
 			<h:outputLabel for="p1">Player Name:</h:outputLabel>
-			<h:inputText value="#{game.player1.name}" id="p1"></h:inputText>
+			<h:inputText value="${navigation.game.player1.name}" id="p1"> </h:inputText>
 			<br />
 			<br />
 
 			<h:outputLabel for="choice">Choice:</h:outputLabel>
-			<h:selectOneListbox value="#{game.choice}" id="choice">
+			<h:selectOneListbox value="#{navigation.choice}" id="choice">
 				<f:selectItem itemValue = "ROCK" itemLabel = "ROCK" />
 				<f:selectItem itemValue = "PAPER" itemLabel = "PAPER" />
 				<f:selectItem itemValue = "SCISSORS" itemLabel = "SCISSORS" />
@@ -25,9 +25,9 @@
 			<br />
 			<br />
 
-            <h:outputLabel for="choice">Tried: #{game.counter}</h:outputLabel>
-
-			<h:commandButton action="#{game.addChoice(game.choice)}" value="Submit"></h:commandButton>
+			<h:outputLabel>Games Played: ${navigation.counter}</h:outputLabel><br /><br />
+			<h:outputLabel>Result: ${navigation.game.temporalResult}</h:outputLabel><br /><br />
+			<h:commandButton action="#{navigation.submitChoice()}" value="Submit"/>
 
 		</h:panelGrid>
 	</h:form>

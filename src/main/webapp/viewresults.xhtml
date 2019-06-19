@@ -7,15 +7,18 @@
 	<title>Game Results</title>
 </h:head>
 <h:body>
-       Player 1 Name: #{game.player1.name}
-       <br />
-	<br />
-    Player 2 Name:#{game.player2.name}
-    <br />
-    <br />
-       Results:
+       Player 1 Name: #{navigation.game.player1.name}
+        <br />
+	    <br />
+        Player 2 Name:#{navigation.game.player2.name}
+        <br />
+        <br />
+        <h:outputLabel value="The game is #{navigation.winner}"/>
         <br/>
-            <ui:repeat value="#{game.results}" var="result">
+        <br/>
+        Results:
+        <br/>
+            <ui:repeat value="#{navigation.game.results}" var="result">
                 <h:outputLabel value="#{result}" /><br/>
             </ui:repeat>
         <br />
