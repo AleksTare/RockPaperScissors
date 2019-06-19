@@ -35,6 +35,8 @@ public class Navigation implements Serializable {
     }
 
     public String simulate(){
+        game.simulate();
+        winner = game.calculateWinner();
         return "viewresults";
     }
 
@@ -50,16 +52,7 @@ public class Navigation implements Serializable {
             return null;
         }else{
             counter = 0;
-            int p1 = game.getPlayer1().getWins();
-            int p2 = game.getPlayer2().getWins();
-            if(p1==p2) winner = " a tie!";
-            else {
-                if(p1>p2){
-                    winner = " won by "+ game.getPlayer1().getName();
-                }else{
-                    winner = " won by "+ game.getPlayer2().getName();
-                }
-            }
+            winner = game.calculateWinner();
             return "viewresults";
         }
     }

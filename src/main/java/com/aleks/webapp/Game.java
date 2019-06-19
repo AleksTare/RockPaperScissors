@@ -4,22 +4,17 @@ import java.util.ArrayList;
 
 public class Game {
 
-    private HumanPlayer player1;
-    private ComputerPlayer player2;
+    private Player player1;
+    private Player player2;
     private Results results = new Results();
     private String temporalResult;
 
     public Game(){
         player1 = new HumanPlayer();
-        player2 = new ComputerPlayer("Computer");
+        player2 = new ComputerPlayer();
     }
 
-    public Game(String pname){
-        player1 = new HumanPlayer(pname);
-        player2 = new ComputerPlayer("Computer");
-    }
-
-    public HumanPlayer getPlayer1() {
+    public Player getPlayer1() {
         return player1;
     }
 
@@ -27,7 +22,7 @@ public class Game {
         this.player1 = player1;
     }
 
-    public ComputerPlayer getPlayer2() {
+    public Player getPlayer2() {
         return player2;
     }
 
@@ -63,25 +58,50 @@ public class Game {
 
     public void addChoice(Choice choice){
             int wins = 0;
+            int p1 = player1.getWins();
+            int p2 = player2.getWins();
             player1.setC(choice);
-            player2.randomizer();
+            ((ComputerPlayer) player2).randomizer();
             int res = evaluate(player1,player2);
             switch (res){
                 case 1:
-                    wins = player1.getWins()+1;
-                    player1.setWins(wins);
+                    player1.setWins(++p1);
                     temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+player1.getName()+" wins!";
                     break;
                 case 2:
-                    wins = player2.getWins()+1;
-                    player2.setWins(wins);
+                    player2.setWins(++p2);
                     temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+player2.getName()+" wins!";
                     break;
                 case 0:
                     temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+"It's a tie!!";
                     break;
             }
+
             results.add(temporalResult);
+    }
+
+    public String calculateWinner(){
+        String winner;
+        int p1 = player1.getWins();
+        int p2 = player2.getWins();
+        if(p1==p2) winner = " a tie!";
+        else {
+            if(p1>p2){
+                winner = " won by "+ player1.getName();
+            }else{
+                winner = " won by "+ player2.getName();
+            }
+        }
+        return winner;
+    }
+
+    public void simulate(){
+        player1 = new ComputerPlayer("Computer 1");
+        player2.setName("Computer 2");
+        for(int i = 0; i < 100; i++){
+            ((ComputerPlayer) player1).randomizer();
+            addChoice(player1.getC());
+        }
     }
 
 }

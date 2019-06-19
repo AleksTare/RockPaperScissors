@@ -18,10 +18,12 @@
         <br/>
         Results:
         <br/>
-            <ui:repeat value="#{navigation.game.results}" var="result">
-                <h:outputLabel value="#{result}" /><br/>
+            <ui:repeat value="#{navigation.game.results}" var="result" varStatus="location">
+               #{location.index+1} : <h:outputLabel value="#{result}" /><br/>
             </ui:repeat>
         <br />
-
+    <h:form>
+        <h:commandButton action="#{navigation.newGame()}" value="New Game"/>
+    </h:form>
 </h:body>
 </html>

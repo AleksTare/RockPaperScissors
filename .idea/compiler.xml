@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="RockPaperScissors" options="-endorseddirs C:\Users\user\IdeaProjects\RockPaperScissors\target/endorsed" />
+      <module name="RockPaperScissors" options="-endorseddirs C:\Users\Alex\IdeaProjects\RockPaperScissors\target/endorsed" />
     </option>
   </component>
 </project>

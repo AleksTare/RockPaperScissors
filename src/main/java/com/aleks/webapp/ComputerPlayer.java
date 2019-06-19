@@ -6,7 +6,7 @@ public class ComputerPlayer implements Player {
     private Choice c;
     private int wins;
 
-    public ComputerPlayer(){}
+    public ComputerPlayer(){ this.name = "Computer";}
 
     public ComputerPlayer(String name){
         this.name = name;
