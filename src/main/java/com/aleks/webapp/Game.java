@@ -1,6 +1,7 @@
 package com.aleks.webapp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -9,28 +10,27 @@ import javax.faces.bean.SessionScoped;
 public class Game implements Serializable {
 
     private static final long serialVersionUID = 1715935052239888761L;
-    private ComputerPlayer player1;
+    private HumanPlayer player1;
     private ComputerPlayer player2;
-    private String pname;
     private String choice;
     private Results results = new Results();
     private int counter = 0;
 
     public Game(){
-        player1 = new ComputerPlayer();
+        player1 = new HumanPlayer();
         player2 = new ComputerPlayer("Computer");
     }
 
     public Game(String pname){
-        player1 = new ComputerPlayer(pname);
+        player1 = new HumanPlayer(pname);
         player2 = new ComputerPlayer("Computer");
     }
 
-    public ComputerPlayer getPlayer1() {
+    public HumanPlayer getPlayer1() {
         return player1;
     }
 
-    public void setPlayer1(ComputerPlayer player1) {
+    public void setPlayer1(HumanPlayer player1) {
         this.player1 = player1;
     }
 
@@ -42,15 +42,6 @@ public class Game implements Serializable {
         this.player2 = player2;
     }
 
-    public String getPname() {
-        return pname;
-    }
-
-    public void setPname(String pname) {
-        this.pname = pname;
-        player1.setName(pname);
-    }
-
     public String getChoice() {
         return choice;
     }
@@ -60,8 +51,8 @@ public class Game implements Serializable {
         player1.setC(Choice.valueOf(choice));
     }
 
-    public Results getResults() {
-        return results;
+    public ArrayList<String> getResults() {
+        return results.getResults();
     }
 
     public void setResults(Results results) {
@@ -76,7 +67,7 @@ public class Game implements Serializable {
         this.counter = counter;
     }
 
-    private static int evaluate(ComputerPlayer p1, ComputerPlayer p2){
+    private static int evaluate(Player p1, Player p2){
         Choice p1choice = p1.getC();
         Choice p2choice = p2.getC();
 

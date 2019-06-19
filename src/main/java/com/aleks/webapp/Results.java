@@ -23,9 +23,16 @@ public class Results {
         for (String s : results)
         {
             sb.append(s);
-            sb.append("\t | ");
+            sb.append("\n");
         }
         return  sb.toString();
     }
 
+    public ArrayList<String> getResults() {
+        return results;
+    }
+
+    public void setResults(ArrayList<String> results) {
+        this.results = results;
+    }
 }
