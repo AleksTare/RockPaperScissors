@@ -23,7 +23,7 @@ public class Results {
         for (String s : results)
         {
             sb.append(s);
-            sb.append("\t");
+            sb.append("\t | ");
         }
         return  sb.toString();
     }

@@ -76,16 +76,57 @@ public class Game implements Serializable {
         this.counter = counter;
     }
 
-    public String addChoice(String choice){
-        if(counter<4){
-            counter++;
-            results.add(choice);
-            return null;
-        }else{
-            results.add(choice);
-            counter = 0;
-            return "viewresults";
+    public int validate(Player p1, Player p2){
+        Player.Choice p1choice = p1.getC();
+        Player.Choice p2choice = p2.getC();
+
+        if(p1choice== Player.Choice.PAPER){
+            switch (p2choice){
+                case ROCK:
+                    return 1;
+                case PAPER:
+                    return 0;
+                case SCISSORS:
+                    return 2;
+            }
         }
+
+        if(p1choice== Player.Choice.ROCK){
+            switch (p2choice){
+                case ROCK:
+                    return 0;
+                case PAPER:
+                    return 2;
+                case SCISSORS:
+                    return 1;
+            }
+        }
+
+        if(p1choice== Player.Choice.SCISSORS){
+            switch (p2choice){
+                case ROCK:
+                    return 2;
+                case PAPER:
+                    return 1;
+                case SCISSORS:
+                    return 0;
+            }
+        }
+
+        return -1;
+
+    }
+
+    public String addChoice(String choice){
+            computer.randomizer();
+            results.add(choice+" vs "+computer.getC());
+            if(counter<4){
+                counter++;
+                return null;
+            }else{
+                counter = 0;
+                return "viewresults";
+            }
     }
 
 }
