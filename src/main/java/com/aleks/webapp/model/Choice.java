@@ -1,4 +1,4 @@
-package com.aleks.webapp;
+package com.aleks.webapp.model;
 
 public enum Choice {
 

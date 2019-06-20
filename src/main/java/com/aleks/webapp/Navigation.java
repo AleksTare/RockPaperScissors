@@ -1,4 +1,6 @@
 package com.aleks.webapp;
+import com.aleks.webapp.model.Choice;
+
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -19,8 +21,6 @@ public class Navigation implements Serializable {
     public Game getGame() { return game; }
 
     public int getCounter() { return counter; }
-
-    public void setCounter(int counter) { this.counter = counter; }
 
     public String getChoice() { return choice; }
 

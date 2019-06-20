@@ -1,4 +1,6 @@
-package com.aleks.webapp;
+package com.aleks.webapp.interfaces;
+
+import com.aleks.webapp.model.Choice;
 
 public interface Player {
 

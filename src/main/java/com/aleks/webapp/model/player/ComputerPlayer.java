@@ -1,4 +1,7 @@
-package com.aleks.webapp;
+package com.aleks.webapp.model.player;
+
+import com.aleks.webapp.interfaces.Player;
+import com.aleks.webapp.model.Choice;
 
 public class ComputerPlayer implements Player {
 

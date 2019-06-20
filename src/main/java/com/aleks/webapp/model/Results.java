@@ -1,10 +1,11 @@
-package com.aleks.webapp;
+package com.aleks.webapp.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Results {
 
-    private ArrayList<String> results;
+    private List<String> results;
 
     public Results(){
         results = new ArrayList<String>();
@@ -26,7 +27,7 @@ public class Results {
         return  sb.toString();
     }
 
-    public ArrayList<String> getResults() {
+    public List<String> getResults() {
         return results;
     }
 
