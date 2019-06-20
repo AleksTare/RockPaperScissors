@@ -20,11 +20,11 @@ public class ComputerPlayer implements Player {
         this.name = name;
     }
 
-    public Choice getC() {
+    public Choice getChoice() {
         return c;
     }
 
-    public void setC(Choice c) {
+    public void setChoice(Choice c) {
         this.c = c;
     }
 
@@ -37,8 +37,8 @@ public class ComputerPlayer implements Player {
         double a = 0.33;
         double b = 0.66;
         if(rand<(a)) c = Choice.ROCK;
-        if(rand<(b) && rand>(a)) c = Choice.PAPER;
-        if(rand>(b)) c = Choice.SCISSORS;
+        else if(rand<(b)) c = Choice.PAPER;
+        else if(rand>(b)) c = Choice.SCISSORS;
     }
 
     private static double getRandomInteger(){

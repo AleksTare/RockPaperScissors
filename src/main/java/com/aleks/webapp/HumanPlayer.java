@@ -20,11 +20,11 @@ public class HumanPlayer implements Player {
         this.name = name;
     }
 
-    public Choice getC() {
+    public Choice getChoice() {
         return c;
     }
 
-    public void setC(Choice c) {
+    public void setChoice(Choice c) {
         this.c = c;
     }
 

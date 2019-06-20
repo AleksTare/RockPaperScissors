@@ -43,8 +43,8 @@ public class Game {
     public void setTemporalResult(String temporalResult) { this.temporalResult = temporalResult; }
 
     private static int evaluate(Player p1, Player p2){
-        Choice p1choice = p1.getC();
-        Choice p2choice = p2.getC();
+        Choice p1choice = p1.getChoice();
+        Choice p2choice = p2.getChoice();
 
         if (p1choice.equals(p2choice)){
             return 0;
@@ -60,20 +60,20 @@ public class Game {
             int wins = 0;
             int p1 = player1.getWins();
             int p2 = player2.getWins();
-            player1.setC(choice);
+            player1.setChoice(choice);
             ((ComputerPlayer) player2).randomizer();
             int res = evaluate(player1,player2);
             switch (res){
                 case 1:
                     player1.setWins(++p1);
-                    temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+player1.getName()+" wins!";
+                    temporalResult = player1.getName()+" played "+player1.getChoice()+" vs "+player2.getChoice()+" played by "+player2.getName()+" | "+player1.getName()+" wins!";
                     break;
                 case 2:
                     player2.setWins(++p2);
-                    temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+player2.getName()+" wins!";
+                    temporalResult = player1.getName()+" played "+player1.getChoice()+" vs "+player2.getChoice()+" played by "+player2.getName()+" | "+player2.getName()+" wins!";
                     break;
                 case 0:
-                    temporalResult = player1.getName()+" played "+player1.getC()+" vs "+player2.getC()+" played by "+player2.getName()+" | "+"It's a tie!!";
+                    temporalResult = player1.getName()+" played "+player1.getChoice()+" vs "+player2.getChoice()+" played by "+player2.getName()+" | "+"It's a tie!!";
                     break;
             }
 
@@ -97,10 +97,10 @@ public class Game {
 
     public void simulate(){
         player1 = new ComputerPlayer("Computer 1");
+        player1.setChoice(Choice.ROCK);
         player2.setName("Computer 2");
         for(int i = 0; i < 100; i++){
-            ((ComputerPlayer) player1).randomizer();
-            addChoice(player1.getC());
+            addChoice(player1.getChoice());
         }
     }
 
