@@ -4,21 +4,20 @@ import com.aleks.webapp.interfaces.Player;
 import com.aleks.webapp.model.*;
 import com.aleks.webapp.model.player.ComputerPlayer;
 import com.aleks.webapp.model.player.HumanPlayer;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
 
     private Player player1;
     private Player player2;
-    private Results results = new Results();
+    private Results results;
     private String newName;
     private String temporalResult;
 
     public Game(){
         player1 = new HumanPlayer();
         player2 = new ComputerPlayer();
+        results = new Results();
     }
 
     public Player getPlayer1() {
@@ -72,11 +71,12 @@ public class Game {
     }
 
     public void addChoice(Choice choice){
-            int wins = 0;
             int p1 = player1.getWins();
             int p2 = player2.getWins();
+
             if(newName!=null && !newName.equals("")) player1.setName(newName);
             player1.setChoice(choice);
+
             ((ComputerPlayer) player2).randomizer();
             int res = evaluate(player1,player2);
             switch (res){
